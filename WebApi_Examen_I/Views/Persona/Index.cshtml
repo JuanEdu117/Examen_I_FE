@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApi_Examen_I.Models.PersonaModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.iCedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sApellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bGenero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtmFechaNacimiento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.iCedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bGenero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtmFechaNacimiento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
