@@ -28,7 +28,7 @@ namespace WebApi_Examen_I.Controllers
             hcConexionApis.BaseAddress = new Uri("http://localhost:35449");              // EL URI AGARRA LA RUTA BASE  DEL API
             hcConexionApis.DefaultRequestHeaders.Accept.Clear();                        //SE LIMPIAN LOS VALORES POR DEFECTO   
             hcConexionApis.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+            
         }
         #endregion
 
