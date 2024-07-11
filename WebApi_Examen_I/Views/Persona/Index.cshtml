@@ -4,35 +4,35 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Registro Personas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AbrirNuevoRegistro" asp-controller="Persona" class="font-weight-bold">Crear Nuevo</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.iCedula)
+                Cédula:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.sNombre)
+                Nombre:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.sApellido)
+                Apellido
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.bGenero)
+                Género
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.dtmFechaNacimiento)
+                Fecha Nacimiento
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr class="table-info">
             <td>
                 @Html.DisplayFor(modelItem => item.iCedula)
             </td>
@@ -49,9 +49,8 @@
                 @Html.DisplayFor(modelItem => item.dtmFechaNacimiento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "AbrirModificarPersona", new { _sCedula = item.iCedula }, new { @class = "btn btn-outline-warning" }) | @*AGARRA LA LLAVE DEL PARAMETRO DEL GESTOR Y INICIALIZA EL VALOR ID*@
+                    @Html.ActionLink("Eliminar", "DeletePersona", new { _sCedula = item.iCedula }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
 }

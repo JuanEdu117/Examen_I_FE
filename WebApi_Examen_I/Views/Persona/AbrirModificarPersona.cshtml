@@ -4,48 +4,56 @@
     ViewData["Title"] = "AbrirModificarPersona";
 }
 
-<h1>AbrirModificarPersona</h1>
+<h1>Modificar Registro</h1>
 
-<h4>PersonaModel</h4>
+<h4>Ingrese la siguiente información a modificar</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AbrirModificarPersona">
+        <form asp-action="UpdatePersona" asp-controller="Persona" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="iCedula" class="control-label"></label>
-                <input asp-for="iCedula" class="form-control" />
+                <label class="control-label">Cédula</label>
+                <input asp-for="iCedula" type="text" readonly="readonly" class="form-control" />
                 <span asp-validation-for="iCedula" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="sNombre" class="control-label"></label>
+                <label class="control-label">Digite el nombre</label>
                 <input asp-for="sNombre" class="form-control" />
                 <span asp-validation-for="sNombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="sApellido" class="control-label"></label>
+                <label class="control-label">Digite el apellido</label>
                 <input asp-for="sApellido" class="form-control" />
                 <span asp-validation-for="sApellido" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="bGenero" /> @Html.DisplayNameFor(model => model.bGenero)
-                </label>
+            <div class="form-group ">
+                @*<label class="form-check-label">
+                <input class="form-check-input" asp-for="bGenero" />Genero:     Html.DisplayNameFor(model => model.bGenero)
+                </label>*@
+                <label class="control-label">Genero:</label>
+                <select asp-for="bGenero" class="form-control" asp-items="@(new SelectList(new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Masculino", Value = "true" },
+                    new SelectListItem { Text = "Femenino", Value = "false" }
+                }, "Value", "Text", Model.bGenero.ToString()))">
+                </select>
+                <span asp-validation-for="bGenero" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="dtmFechaNacimiento" class="control-label"></label>
-                <input asp-for="dtmFechaNacimiento" class="form-control" />
+                <label class="control-label">Digite la fecha de nacimiento</label>
+                <input asp-for="dtmFechaNacimiento" type="date" class="form-control" />
                 <span asp-validation-for="dtmFechaNacimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Persona">Regresar a la lista</a>
 </div>
 
 @section Scripts {
