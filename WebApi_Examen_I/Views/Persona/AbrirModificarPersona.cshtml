@@ -1,0 +1,53 @@
+﻿@model WebApi_Examen_I.Models.PersonaModel
+
+@{
+    ViewData["Title"] = "AbrirModificarPersona";
+}
+
+<h1>AbrirModificarPersona</h1>
+
+<h4>PersonaModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AbrirModificarPersona">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="iCedula" class="control-label"></label>
+                <input asp-for="iCedula" class="form-control" />
+                <span asp-validation-for="iCedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sNombre" class="control-label"></label>
+                <input asp-for="sNombre" class="form-control" />
+                <span asp-validation-for="sNombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sApellido" class="control-label"></label>
+                <input asp-for="sApellido" class="form-control" />
+                <span asp-validation-for="sApellido" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="bGenero" /> @Html.DisplayNameFor(model => model.bGenero)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="dtmFechaNacimiento" class="control-label"></label>
+                <input asp-for="dtmFechaNacimiento" class="form-control" />
+                <span asp-validation-for="dtmFechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
