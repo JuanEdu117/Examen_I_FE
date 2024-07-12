@@ -1,0 +1,54 @@
+﻿@model WebApi_Examen_I.Models.ArticuloModel
+
+@{
+    ViewData["Title"] = "AbrirNuevoRegistroArtic";
+}
+
+<h1>Registrar Nuevo Artículo</h1>
+
+<h4>Crear Nuevo Artículo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InsertArticulo" asp-controller="Articulo" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     
+            <div class="form-group">
+                <label class="control-label">Digite el código:</label>
+                <input asp-for="iCodigo" class="form-control" />
+                <span asp-validation-for="iCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite la descrpción:</label>
+                <input asp-for="sDescripcion" class="form-control" />
+                <span asp-validation-for="sDescripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label lass="control-label">Digite la cantidad disponible:</label>
+                <input asp-for="iCant_Disponible" class="form-control" />
+                <span asp-validation-for="iCant_Disponible" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite la fecha de caducidad:</label>
+                <input asp-for="dtmFecha_Caducidad" type="date" class="form-control" />
+                <span asp-validation-for="dtmFecha_Caducidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite el precio unitario:</label>
+                <input asp-for="dbPrecio_Unitario" class="form-control" />
+                <span asp-validation-for="dbPrecio_Unitario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Articulo">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

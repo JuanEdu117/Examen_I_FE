@@ -4,15 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Registro Artículos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AbrirNuevoRegistroArtic" asp-controller="Articulo" class="font-weight-bold">Crear Nuevo</a>
 </p>
 <table class="table table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
         <tr>
-            <th>
+            <th style="display:none">
                 ID
             </th>
             <th>
@@ -36,7 +36,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr class="table-warning">
-            <td>
+            <td style="display:none">
                 @Html.DisplayFor(modelItem => item.sId)
             </td>
                 <td>
@@ -54,9 +54,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.dbPrecio_Unitario)
             </td>
-            <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarPersona", new { _sCedula = item.sId }, new { @class = "btn btn-warning" }) | @*AGARRA LA LLAVE DEL PARAMETRO DEL GESTOR Y INICIALIZA EL VALOR ID*@
-                    @Html.ActionLink("Eliminar", "DeletePersona", new { _sCedula = item.sId }, new { @class = "btn btn-danger" })
+            <td>                                                                                            @*AGARRA LA LLAVE DEL PARAMETRO DEL GESTOR Y INICIALIZA EL VALOR ID*@
+                    @Html.ActionLink("Modificar", "AbrirModificarArtic", new { _sIdArtic = item.sId }, new { @class = "btn btn-warning" })|
+                    @Html.ActionLink("Eliminar", "DeleteArticulo", new { _sIdArtic = item.sId }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }

@@ -53,9 +53,10 @@ namespace WebApi_Examen_I.Controllers
             List<ArticuloModel> _lstResultado = new List<ArticuloModel>();
             string _sRutaAPI = @"api/Articulo/FiltrarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
 
+            hcConexionApis.DefaultRequestHeaders.Add("sIdArtic", Obj_Articulo.sId);
             hcConexionApis.DefaultRequestHeaders.Add("iCod", Obj_Articulo.iCodigo.ToString());
             hcConexionApis.DefaultRequestHeaders.Add("sDescrip", Obj_Articulo.sDescripcion);
-            hcConexionApis.DefaultRequestHeaders.Add("dbPrecio", Obj_Articulo.dbPrecio_Unitario.ToString());
+            
 
             HttpResponseMessage resultadoconsumo = await hcConexionApis.GetAsync(_sRutaAPI);
             if (resultadoconsumo.IsSuccessStatusCode)
@@ -74,14 +75,14 @@ namespace WebApi_Examen_I.Controllers
         public async Task<bool> ModificarArticulo(ArticuloModel Obj_Articulo) 
         {
             string _sRutaAPI = @"api/Articulo/ModificarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
-            hcConexionApis.DefaultRequestHeaders.Add("_sId", Obj_Articulo.sId);
+            hcConexionApis.DefaultRequestHeaders.Add("sIdArtic", Obj_Articulo.sId);
             HttpResponseMessage resultadoconsumo = await hcConexionApis.PutAsJsonAsync(_sRutaAPI, Obj_Articulo);
             return resultadoconsumo.IsSuccessStatusCode;
         }
         public async Task<bool> EliminarArticulo(ArticuloModel Obj_Articulo)
         {
             string _sRutaAPI = @"api/Articulo/EliminarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
-            hcConexionApis.DefaultRequestHeaders.Add("_sId", Obj_Articulo.sId);
+            hcConexionApis.DefaultRequestHeaders.Add("sIdArtic", Obj_Articulo.sId);
             HttpResponseMessage resultadoconsumo = await hcConexionApis.DeleteAsync(_sRutaAPI);
             return resultadoconsumo.IsSuccessStatusCode;
         }
