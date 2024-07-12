@@ -35,7 +35,56 @@ namespace WebApi_Examen_I.Controllers
         #region METODOS PUBLICOS
 
         #region ARTÍCULOS MONGODB
+        public async Task<List<ArticuloModel>> ListarAticulo() 
+        {
+            List<ArticuloModel> _lstResultado = new List<ArticuloModel>();
+            string _sRutaAPI = @"api/Articulo/ConsultarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
 
+            HttpResponseMessage resultadoconsumo = await hcConexionApis.GetAsync(_sRutaAPI);
+            if (resultadoconsumo.IsSuccessStatusCode)
+            {
+                string _sJsonstring = await resultadoconsumo.Content.ReadAsStringAsync();   //AL RESULTADO CONSUMO LEER EL CONTENIDO QUE TRAE
+                _lstResultado = JsonSerializer.Deserialize<List<ArticuloModel>>(_sJsonstring);
+            }
+            return _lstResultado;
+        }
+        public async Task<List<ArticuloModel>> FiltrarArticulo(ArticuloModel Obj_Articulo)                   // MATERIA CLASE V ↓↓↓↓
+        {
+            List<ArticuloModel> _lstResultado = new List<ArticuloModel>();
+            string _sRutaAPI = @"api/Articulo/FiltrarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
+
+            hcConexionApis.DefaultRequestHeaders.Add("iCod", Obj_Articulo.iCodigo.ToString());
+            hcConexionApis.DefaultRequestHeaders.Add("sDescrip", Obj_Articulo.sDescripcion);
+            hcConexionApis.DefaultRequestHeaders.Add("dbPrecio", Obj_Articulo.dbPrecio_Unitario.ToString());
+
+            HttpResponseMessage resultadoconsumo = await hcConexionApis.GetAsync(_sRutaAPI);
+            if (resultadoconsumo.IsSuccessStatusCode)
+            {
+                string _sJsonstring = await resultadoconsumo.Content.ReadAsStringAsync(); //AL RESULTADO CONSUMO LEER EL CONTENIDO QUE TRAE
+                _lstResultado = JsonSerializer.Deserialize<List<ArticuloModel>>(_sJsonstring);
+            }
+            return _lstResultado;
+        }
+        public async Task<bool> AgregarArticulo(ArticuloModel Obj_Articulo) 
+        {
+            string _sRutaAPI = @"api/Articulo/AgregarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
+            HttpResponseMessage resultadoconsumo = await hcConexionApis.PostAsJsonAsync(_sRutaAPI, Obj_Articulo);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
+        public async Task<bool> ModificarArticulo(ArticuloModel Obj_Articulo) 
+        {
+            string _sRutaAPI = @"api/Articulo/ModificarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
+            hcConexionApis.DefaultRequestHeaders.Add("_sId", Obj_Articulo.sId);
+            HttpResponseMessage resultadoconsumo = await hcConexionApis.PutAsJsonAsync(_sRutaAPI, Obj_Articulo);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
+        public async Task<bool> EliminarArticulo(ArticuloModel Obj_Articulo)
+        {
+            string _sRutaAPI = @"api/Articulo/EliminarArticulo";                              //VA A CONCATENAR A LA RUTA BASE
+            hcConexionApis.DefaultRequestHeaders.Add("_sId", Obj_Articulo.sId);
+            HttpResponseMessage resultadoconsumo = await hcConexionApis.DeleteAsync(_sRutaAPI);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
         #endregion
 
         #region PERSONA SQLServer

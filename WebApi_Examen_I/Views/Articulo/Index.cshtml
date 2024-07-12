@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApi_Examen_I.Models.ArticuloModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Cantidad Disponible
+            </th>
+            <th>
+                Fecha Caducidad
+            </th>
+            <th>
+                Precio Unitario
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.sId)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iCodigo)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iCant_Disponible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtmFecha_Caducidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dbPrecio_Unitario)
+            </td>
+            <td>
+                    @Html.ActionLink("Modificar", "AbrirModificarPersona", new { _sCedula = item.sId }, new { @class = "btn btn-warning" }) | @*AGARRA LA LLAVE DEL PARAMETRO DEL GESTOR Y INICIALIZA EL VALOR ID*@
+                    @Html.ActionLink("Eliminar", "DeletePersona", new { _sCedula = item.sId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
